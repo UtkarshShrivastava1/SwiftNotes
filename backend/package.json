@@ -1,0 +1,23 @@
+{
+  "name": "swiftnotes-backend",
+  "version": "1.0.0",
+  "description": " MERN-powered notepad app for educational purpose.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UtkarshShrivastava1/SwiftNotes.git"
+  },
+  "author": "Utkarsh Shrivastava",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UtkarshShrivastava1/SwiftNotes/issues"
+  },
+  "homepage": "https://github.com/UtkarshShrivastava1/SwiftNotes#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3"
+  }
+}
