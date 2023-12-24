@@ -4,6 +4,7 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+// Create a user using: POST "/api/auth/createuser" [NO LOGIN REQUIRED]
 router.post(
   "/createuser",
   [
@@ -54,6 +55,61 @@ router.post(
       res.json({ token });
     } catch (error) {
       console.error("Error saving user:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+);
+
+// Authenticate a user using: POST "/api/auth/login" [NO LOGIN REQUIRED]
+router.post(
+  "/login",
+  [
+    // Validate email
+    body("email").isEmail().withMessage("Invalid email"),
+
+    // Validate password
+    body("password")
+      .isLength({ min: 5 })
+      .withMessage("Password must be at least 5 characters long")
+      .exists(),
+
+    // Add more validation rules as needed
+  ],
+  async (req, res) => {
+    // If there are errors, return bad request and the error
+    // Check for validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { email, password } = req.body;
+    try {
+      let user = await User.findOne({ email });
+
+      if (!user) {
+        return res
+          .status(400)
+          .json({ error: "Please enter correct credentials" });
+      }
+
+      const passwordCompare = await bcrypt.compare(password, user.password);
+
+      if (!passwordCompare) {
+        return res.status(400).json({ error: "Invalid password" });
+      }
+
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      const token = jwt.sign(data, "your-secret-key", {
+        expiresIn: "1h",
+      });
+      res.json({ token });
+    } catch (error) {
+      console.error("Error logging in user:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   }
