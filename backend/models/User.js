@@ -1,6 +1,7 @@
+//models/User.js
 const mongoose = require("mongoose");
-
-const UserSchema = new Schema({
+const { Schema } = mongoose;
+const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -16,7 +17,7 @@ const UserSchema = new Schema({
   },
   date: {
     type: Date,
-    required: Date.now,
+    default: Date.now,
   },
 });
 

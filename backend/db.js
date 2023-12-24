@@ -1,6 +1,6 @@
 // db.js
 const mongoose = require("mongoose");
-const mongoURI = "mongodb://localhost:27017"; // Replace 'your-database-name' with your actual database name
+const mongoURI = "mongodb://localhost:27017/SwiftNotesDB"; // Replace 'your-database-name' with your actual database name
 
 const connectToMongo = async () => {
   try {
