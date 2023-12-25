@@ -1,10 +1,16 @@
-const User = require("../models/User");
-const router = require("express").Router();
+// routes/auth.js
+const express = require("express");
+const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+const fetchuser = require("../middleware/fetchuser");
 
-// Create a user using: POST "/api/auth/createuser" [NO LOGIN REQUIRED]
+// Use a constant for JWT secret key
+const JWT_SECRET = "5a8f621a5e8c2b035e8d9d8c2c4fda6c";
+
+// ROUTE 01: Create a user using: POST "/api/auth/createuser" [NO LOGIN REQUIRED]
 router.post(
   "/createuser",
   [
@@ -18,8 +24,6 @@ router.post(
     body("password")
       .isLength({ min: 5 })
       .withMessage("Password must be at least 5 characters long"),
-
-    // Add more validation rules as needed
   ],
   async (req, res) => {
     try {
@@ -47,7 +51,7 @@ router.post(
       });
 
       // Create a JWT token
-      const token = jwt.sign({ userId: newUser._id }, "your-secret-key", {
+      const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, {
         expiresIn: "1h",
       });
 
@@ -60,7 +64,7 @@ router.post(
   }
 );
 
-// Authenticate a user using: POST "/api/auth/login" [NO LOGIN REQUIRED]
+// ROUTE 02: Authenticate a user using: POST "/api/auth/login" [NO LOGIN REQUIRED]
 router.post(
   "/login",
   [
@@ -72,8 +76,6 @@ router.post(
       .isLength({ min: 5 })
       .withMessage("Password must be at least 5 characters long")
       .exists(),
-
-    // Add more validation rules as needed
   ],
   async (req, res) => {
     // If there are errors, return bad request and the error
@@ -104,7 +106,7 @@ router.post(
           id: user.id,
         },
       };
-      const token = jwt.sign(data, "your-secret-key", {
+      const token = jwt.sign(data, JWT_SECRET, {
         expiresIn: "1h",
       });
       res.json({ token });
@@ -114,5 +116,18 @@ router.post(
     }
   }
 );
+
+// ROUTE 03: Get Loggedin user details using: POST "/api/auth/getuser" [LOGIN REQUIRED]
+router.post("/getuser", fetchuser, async (req, res) => {
+  let user; // Move the declaration outside the try block
+  try {
+    // The user information is already attached to the req object by the fetchuser middleware
+    user = req.user; // Assign the value here
+    res.json(user);
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 module.exports = router;
