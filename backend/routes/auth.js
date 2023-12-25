@@ -52,7 +52,7 @@ router.post(
 
       // Create a JWT token
       const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, {
-        expiresIn: "1h",
+        expiresIn: "24h",
       });
 
       // Send only the token in the response
