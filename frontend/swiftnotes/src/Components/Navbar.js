@@ -1,7 +1,8 @@
+//Navbar.js
 import { useEffect } from "react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-
+import "./Navbar.css";
 const Navbar = () => {
   let location = useLocation();
   useEffect(() => {
@@ -23,9 +24,13 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon "></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            className="collapse navbar-collapse"
+            id="navbarSupportedContent"
+            data-bs-theme="dark"
+          >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
@@ -78,7 +83,7 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item">
+              <li className="nav-item ">
                 <Link className="nav-link disabled" to="#" aria-disabled="true">
                   Disabled
                 </Link>

@@ -1,0 +1,49 @@
+/* Custom styles for the Navbar */
+.navbar {
+  background-color: #2c3e50; /* Set the background color */
+  color: #7a0dcd; /* Set the text color */
+  border-radius: 0; /* Remove border-radius for a modern look */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.navbar-brand {
+  font-size: 1.5rem; /* Increase the font size of the brand */
+  font-weight: bold; /* Make the brand text bold */
+}
+
+.navbar-toggler-icon {
+  background-color: #219bba; /* Set the color of the toggler icon */
+}
+
+.navbar-nav .nav-link {
+  color: #064555; /* Set the color of the nav links */
+  margin-right: 15px; /* Add some space between nav links */
+}
+
+.navbar-nav .nav-link.active {
+  font-weight: bold; /* Highlight active nav link with bold text */
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block; /* Show dropdown menu on hover */
+}
+
+.dropdown-menu {
+  background-color: #34495e; /* Set the background color of the dropdown */
+  border: none; /* Remove border for a cleaner look */
+}
+
+.dropdown-item {
+  color: #ecf0f1; /* Set the color of dropdown items */
+}
+
+.form-control {
+  border: 1px solid #bdc3c7; /* Set the border color for the search input */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar-nav {
+    margin-top: 10px; /* Adjust spacing for mobile view */
+  }
+}
