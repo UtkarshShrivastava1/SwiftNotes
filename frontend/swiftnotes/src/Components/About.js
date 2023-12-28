@@ -1,3 +1,4 @@
+// Components/About.js
 import React, { useContext } from "react";
 import noteContext from "../Context/Notes/noteContext";
 
