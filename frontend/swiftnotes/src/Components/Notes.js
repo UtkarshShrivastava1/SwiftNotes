@@ -10,7 +10,7 @@ const Notes = () => {
       <h2>Your Notes</h2>
       <div className="row">
         {context.notes.map((note, index) => (
-          <div key={index} className="col-md-4">
+          <div key={note._id} className="col-md-4">
             <Noteitem note={note} />
           </div>
         ))}
