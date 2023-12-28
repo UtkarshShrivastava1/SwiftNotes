@@ -15,7 +15,7 @@ const AddNote = () => {
   });
 
   // Destructure values from note
-  const { title, description, tag } = note;
+  const { title, description } = note;
 
   // Handle form input changes
   const handleChange = (e) => {
