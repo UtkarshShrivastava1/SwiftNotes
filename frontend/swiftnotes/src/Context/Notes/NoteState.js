@@ -91,7 +91,7 @@ const NoteState = (props) => {
       });
 
       // Update state after editing
-      const json = await response.json(); // Move this line here
+      //const json = await response.json(); // Move this line here
       if (response.ok) {
         setNotes((prevNotes) =>
           prevNotes.map((note) =>

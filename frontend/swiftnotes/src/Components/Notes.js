@@ -7,11 +7,11 @@ import AddNote from "./AddNote";
 
 const Notes = () => {
   const context = useContext(noteContext);
-  const { notes, getNotes, editNote } = context;
+  const { getNotes, editNote } = context;
 
   useEffect(() => {
     getNotes();
-  }, []);
+  }, [getNotes]);
 
   const [selectedNote, setSelectedNote] = useState(null);
   const [showModal, setShowModal] = useState(false);

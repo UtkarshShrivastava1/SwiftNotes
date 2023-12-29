@@ -3,10 +3,10 @@ import React, { useContext } from "react";
 import noteContext from "../Context/Notes/noteContext";
 
 const Noteitem = (props) => {
-  const { title, description, tag, user, _id } = props.note; // Destructure _id
+  const { title, description, tag, _id } = props.note; // Destructure _id
   const context = useContext(noteContext);
   const { deleteNote } = context;
-  const { updateNote, handleClose } = props; // Add handleClose
+  const { updateNote } = props; // Add handleClose
 
   return (
     <div className="col-md-8 my-3">
