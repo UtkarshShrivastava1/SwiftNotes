@@ -15,7 +15,7 @@ const AddNote = () => {
   });
 
   // Destructure values from note
-  const { title, description } = note;
+  const { title, description, tag } = note; // Corrected the label for "tag"
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -34,7 +34,7 @@ const AddNote = () => {
     setNote({
       title: "",
       description: "",
-      tag: "default",
+      tag: "",
     });
   };
 
@@ -55,6 +55,19 @@ const AddNote = () => {
               onChange={handleChange}
             />
           </div>
+          <div className="mb-3">
+            <label htmlFor="tag" className="form-label">
+              Note Tag {/* Corrected label for "tag" */}
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="tag"
+              value={tag}
+              onChange={handleChange}
+            />
+          </div>
+
           <div className="mb-3">
             <label htmlFor="description" className="form-label">
               Note Description

@@ -77,6 +77,7 @@ const NoteState = (props) => {
   };
 
   // Function to edit a note
+  // Function to edit a note
   const editNote = async (id, title, description, tag) => {
     try {
       const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
@@ -90,6 +91,7 @@ const NoteState = (props) => {
       });
 
       // Update state after editing
+      const json = await response.json(); // Move this line here
       if (response.ok) {
         setNotes((prevNotes) =>
           prevNotes.map((note) =>
