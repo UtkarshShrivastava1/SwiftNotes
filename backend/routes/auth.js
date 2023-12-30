@@ -54,9 +54,9 @@ router.post(
       const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, {
         expiresIn: "24h",
       });
-
+      success = true;
       // Send only the token in the response
-      res.json({ token });
+      res.json({ success, token });
     } catch (error) {
       console.error("Error saving user:", error);
       res.status(500).json({ error: "Internal Server Error" });
@@ -78,6 +78,8 @@ router.post(
       .exists(),
   ],
   async (req, res) => {
+    let success = false;
+
     // If there are errors, return bad request and the error
     // Check for validation errors
     const errors = validationResult(req);
@@ -90,6 +92,8 @@ router.post(
       let user = await User.findOne({ email });
 
       if (!user) {
+        success = false;
+
         return res
           .status(400)
           .json({ error: "Please enter correct credentials" });
@@ -98,18 +102,16 @@ router.post(
       const passwordCompare = await bcrypt.compare(password, user.password);
 
       if (!passwordCompare) {
+        success = false;
         return res.status(400).json({ error: "Invalid password" });
       }
 
-      const data = {
-        user: {
-          id: user.id,
-        },
-      };
-      const token = jwt.sign(data, JWT_SECRET, {
-        expiresIn: "1h",
+      // Use the same structure for the token payload
+      const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
+        expiresIn: "24h",
       });
-      res.json({ token });
+      success = true;
+      res.json({ success, token });
     } catch (error) {
       console.error("Error logging in user:", error);
       res.status(500).json({ error: "Internal Server Error" });
