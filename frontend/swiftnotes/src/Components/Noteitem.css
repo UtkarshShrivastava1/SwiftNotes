@@ -1,0 +1,42 @@
+/* Components/Noteitem.css */
+.card {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  border: 1px solid #dee2e6; /* Light border color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  transition: transform 0.3s ease-in-out; /* Smooth scale transition */
+}
+
+.card:hover {
+  transform: scale(1.03); /* Scale up on hover for a subtle effect */
+}
+
+.card-title {
+  color: #76b1cf; /* Dark text color for title */
+}
+
+.card-subtitle {
+  color: #e1e7ec; /* Subdued text color for tag */
+}
+
+.card-text {
+  color: #f1f1f1; /* Slightly darker text color for description */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+i {
+  font-size: 20px; /* Set icon size */
+  cursor: pointer; /* Add pointer cursor for interaction */
+  margin: 0 5px; /* Add margin between icons */
+  color: #a6b8cb; /* Blue color for icons */
+}
+
+i:hover {
+  color: #0056b3; /* Darker blue on hover */
+}

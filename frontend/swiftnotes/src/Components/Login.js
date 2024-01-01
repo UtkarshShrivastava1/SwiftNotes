@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+// Components/Login.js
+
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import noteContext from "../Context/Notes/noteContext";
 const host = "http://localhost:5000";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let navigate = useNavigate();
+  const context = useContext(noteContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(`${host}/api/auth/login`, {
@@ -22,6 +26,10 @@ const Login = () => {
     if (json.success) {
       //save the auth token and redirect
       localStorage.setItem("token", json.token);
+      console.log(json.username);
+      context.loginUser(json.username);
+      let username = json.username;
+      localStorage.setItem("username", username);
       navigate("/");
     } else {
       alert("Invalid bro");

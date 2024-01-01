@@ -1,6 +1,7 @@
 // Components/Noteitem.js
 import React, { useContext } from "react";
 import noteContext from "../Context/Notes/noteContext";
+import "./Noteitem.css";
 
 const Noteitem = (props) => {
   const { title, description, tag, _id } = props.note; // Destructure _id

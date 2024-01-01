@@ -111,7 +111,8 @@ router.post(
         expiresIn: "24h",
       });
       success = true;
-      res.json({ success, token });
+      username = email;
+      res.json({ username, success, token });
     } catch (error) {
       console.error("Error logging in user:", error);
       res.status(500).json({ error: "Internal Server Error" });

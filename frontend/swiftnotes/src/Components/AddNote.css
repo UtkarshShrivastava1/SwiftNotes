@@ -1,0 +1,23 @@
+/* AddNote.css (create a new CSS file if not existing) */
+.container {
+  max-width: 1900px;
+}
+
+form {
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #007bff; /* Primary color */
+  font-family: "Open Sans", sans-serif; /* Stylish font */
+}
+
+label {
+  font-weight: bold;
+  font-family: "Roboto", sans-serif; /* Another stylish font for labels */
+}
+
+/* Optional: Add more styling based on your preference */

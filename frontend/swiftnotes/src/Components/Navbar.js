@@ -1,20 +1,34 @@
 // Components/Navbar.js
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
+import noteContext from "../Context/Notes/noteContext";
+
 const Navbar = () => {
   let location = useLocation();
   let navigate = useNavigate();
+  const context = useContext(noteContext);
+  let username;
+
+  if (localStorage.getItem("username")) {
+    // If localStorage has a non-empty username, set the variable
+    username = localStorage.getItem("username");
+  } else {
+    // If localStorage doesn't have a username, set the variable to null or a default value
+    username = null; // or username = "Default";
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    context.loginUser(null); // Clear user information on logout
     navigate("/Login");
   };
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary ">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        {" "}
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             SwiftNOtes
@@ -56,42 +70,6 @@ const Navbar = () => {
                   About
                 </Link>
               </li>
-              <li className="nav-item dropdown">
-                <Link
-                  className="nav-link dropdown-toggle"
-                  to="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </Link>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Action
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Another action
-                    </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="#">
-                      Something else here
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item ">
-                <Link className="nav-link disabled" to="#" aria-disabled="true">
-                  Disabled
-                </Link>
-              </li>
             </ul>
             {!localStorage.getItem("token") ? (
               <form className="d-flex" role="search">
@@ -121,9 +99,13 @@ const Navbar = () => {
                 </Link>
               </form>
             ) : (
-              <button onClick={handleLogout} className="btn btn-primary mx-3">
-                Logout
-              </button>
+              <>
+                <button onClick={handleLogout} className="btn btn-primary mx-3">
+                  Logout
+                </button>
+                {/* Display user's name if logged in */}
+                <div style={{ color: "white" }}>{username}</div>
+              </>
             )}
           </div>
         </div>

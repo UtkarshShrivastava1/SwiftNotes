@@ -1,3 +1,5 @@
+// Components/Alert.js
+
 import React from "react";
 
 const Alert = (props) => {

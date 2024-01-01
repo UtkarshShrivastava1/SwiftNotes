@@ -1,3 +1,4 @@
+// Context/Notes/NoteState.js
 import React, { useState } from "react";
 import NoteContext from "./noteContext";
 const NoteState = (props) => {
@@ -8,7 +9,8 @@ const NoteState = (props) => {
 
   // State to manage notes
   const [notes, setNotes] = useState(notesInitial);
-
+  // State to manage user information
+  const [user, setUser] = useState(null);
   // Function to Get all notes
   const getNotes = async () => {
     try {
@@ -100,10 +102,21 @@ const NoteState = (props) => {
       console.error("Error editing note:", error);
     }
   };
-
+  // Function to set the user when logged in
+  const loginUser = (userData) => {
+    setUser(userData);
+  };
   return (
     <NoteContext.Provider
-      value={{ notes, addNote, deleteNote, editNote, getNotes }}
+      value={{
+        notes,
+        addNote,
+        deleteNote,
+        editNote,
+        getNotes,
+        loginUser,
+        user,
+      }}
     >
       {props.children}
     </NoteContext.Provider>

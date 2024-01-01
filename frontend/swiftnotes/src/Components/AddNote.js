@@ -1,7 +1,7 @@
 // Components/AddNote.js
 import React, { useContext, useState } from "react";
 import noteContext from "../Context/Notes/noteContext";
-
+import "./AddNote.css"; // Adjust the path based on your project structure
 const AddNote = () => {
   const context = useContext(noteContext);
   const { addNote } = context;
