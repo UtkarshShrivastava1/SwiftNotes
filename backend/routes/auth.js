@@ -54,7 +54,7 @@ router.post(
       const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, {
         expiresIn: "24h",
       });
-      success = true;
+      const success = true;
       // Send only the token in the response
       res.json({ success, token });
     } catch (error) {
@@ -125,7 +125,8 @@ router.post("/getuser", fetchuser, async (req, res) => {
   try {
     // The user information is already attached to the req object by the fetchuser middleware
     user = req.user; // Assign the value here
-    res.json(user);
+    const success = true;
+    res.json({ success, user });
   } catch (error) {
     console.error("Error fetching user:", error);
     res.status(500).json({ error: "Internal Server Error" });

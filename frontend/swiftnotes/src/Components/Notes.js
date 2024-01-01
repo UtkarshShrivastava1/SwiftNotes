@@ -4,14 +4,20 @@ import { Modal, Button, Form } from "react-bootstrap";
 import noteContext from "../Context/Notes/noteContext";
 import Noteitem from "./Noteitem";
 import AddNote from "./AddNote";
+import { useNavigate } from "react-router-dom";
 
 const Notes = () => {
   const context = useContext(noteContext);
   const { getNotes, editNote } = context;
+  let navigate = useNavigate();
 
   useEffect(() => {
-    getNotes();
-  }, [getNotes]);
+    if (localStorage.getItem("token")) {
+      getNotes();
+    } else {
+      navigate("/Login");
+    }
+  }, [getNotes, navigate]);
 
   const [selectedNote, setSelectedNote] = useState(null);
   const [showModal, setShowModal] = useState(false);

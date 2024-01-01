@@ -2,8 +2,15 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   let location = useLocation();
+  let navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/Login");
+  };
 
   return (
     <div>
@@ -86,24 +93,38 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
+            {!localStorage.getItem("token") ? (
+              <form className="d-flex" role="search">
+                <input
+                  className="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button className="btn btn-outline-success" type="submit">
+                  Search
+                </button>
 
-              <Link to="/Login" className="btn btn-primary mx-3" role="button">
-                LogIn
-              </Link>
-              <Link to="/Signup" className="btn btn-primary mx-3" role="button">
-                SignUp
-              </Link>
-            </form>
+                <Link
+                  to="/Login"
+                  className="btn btn-primary mx-3"
+                  role="button"
+                >
+                  LogIn
+                </Link>
+                <Link
+                  to="/Signup"
+                  className="btn btn-primary mx-3"
+                  role="button"
+                >
+                  SignUp
+                </Link>
+              </form>
+            ) : (
+              <button onClick={handleLogout} className="btn btn-primary mx-3">
+                Logout
+              </button>
+            )}
           </div>
         </div>
       </nav>
