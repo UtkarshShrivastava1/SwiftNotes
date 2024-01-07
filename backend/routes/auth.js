@@ -112,7 +112,8 @@ router.post(
       });
       success = true;
       username = email;
-      res.json({ username, success, token });
+      const name = user.name;
+      res.json({ name, username, success, token });
     } catch (error) {
       console.error("Error logging in user:", error);
       res.status(500).json({ error: "Internal Server Error" });
@@ -123,6 +124,7 @@ router.post(
 // ROUTE 03: Get Loggedin user details using: POST "/api/auth/getuser" [LOGIN REQUIRED]
 router.post("/getuser", fetchuser, async (req, res) => {
   let user; // Move the declaration outside the try block
+  let name;
   try {
     // The user information is already attached to the req object by the fetchuser middleware
     user = req.user; // Assign the value here

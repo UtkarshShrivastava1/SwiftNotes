@@ -29,7 +29,10 @@ const Login = () => {
       console.log(json.username);
       context.loginUser(json.username);
       let username = json.username;
-      localStorage.setItem("username", username);
+      let name = json.name;
+      localStorage.setItem("username", username); // fetch username(email id) from backend
+      localStorage.setItem("name", name); //fettch name from backend
+
       navigate("/");
     } else {
       alert("Invalid bro");

@@ -5,6 +5,7 @@ import noteContext from "../Context/Notes/noteContext";
 import Noteitem from "./Noteitem";
 import AddNote from "./AddNote";
 import { useNavigate } from "react-router-dom";
+import "./Notes.css";
 
 const Notes = () => {
   const context = useContext(noteContext);
@@ -81,7 +82,7 @@ const Notes = () => {
       ></button>
 
       {/* Modal */}
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal show={showModal} onHide={handleClose} className="custom-modal">
         <Modal.Header closeButton>
           <Modal.Title>Edit Note</Modal.Title>
         </Modal.Header>

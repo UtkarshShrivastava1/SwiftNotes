@@ -1,0 +1,9 @@
+/* Home.css (create a new CSS file if not existing) */
+.container {
+  max-width: 1900px;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(75deg, #7968c5 0%, #8ea7e6 100%);
+}
+
+/* Optional: Add more styling based on your preference */

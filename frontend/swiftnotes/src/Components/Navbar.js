@@ -10,13 +10,16 @@ const Navbar = () => {
   let navigate = useNavigate();
   const context = useContext(noteContext);
   let username;
+  let name;
 
   if (localStorage.getItem("username")) {
     // If localStorage has a non-empty username, set the variable
     username = localStorage.getItem("username");
+    name = localStorage.getItem("name");
   } else {
     // If localStorage doesn't have a username, set the variable to null or a default value
     username = null; // or username = "Default";
+    name = null;
   }
 
   const handleLogout = () => {
@@ -104,7 +107,10 @@ const Navbar = () => {
                   Logout
                 </button>
                 {/* Display user's name if logged in */}
-                <div style={{ color: "white" }}>{username}</div>
+                <div style={{ color: "white" }}>
+                  Hello {name} ! <br />
+                  Email:{username}
+                </div>
               </>
             )}
           </div>

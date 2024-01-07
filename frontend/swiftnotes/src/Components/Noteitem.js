@@ -4,7 +4,7 @@ import noteContext from "../Context/Notes/noteContext";
 import "./Noteitem.css";
 
 const Noteitem = (props) => {
-  const { title, description, tag, _id } = props.note; // Destructure _id
+  const { title, description, _id } = props.note; // Destructure _id
   const context = useContext(noteContext);
   const { deleteNote } = context;
   const { updateNote } = props; // Add handleClose
@@ -15,7 +15,6 @@ const Noteitem = (props) => {
       <div className="card">
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
-          <h6>{tag}</h6>
           <p className="card-text">{description}</p>
           <div className="d-flex justify-content-between align-items-center mt-3">
             <i

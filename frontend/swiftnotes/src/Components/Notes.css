@@ -1,0 +1,65 @@
+/* Custom style for the modal */
+.modal-content {
+  background-color: #f4f4f4; /* Background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+.modal-header {
+  background-color: #34587f; /* Header background color */
+  color: #fff; /* Header text color */
+  border-bottom: 1px solid #ddd; /* Header border */
+}
+/* Custom style for the modal */
+.custom-modal .modal-content {
+  background-color: #f4f4f4; /* Background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+  width: 200vw; /* Set the width to 200% of the viewport width */
+  max-width: 250%; /* Set a maximum width equal to the viewport width */
+  height: 95vh; /* Set the height to 90% of the viewport height */
+  max-height: 100%; /* Set a maximum height equal to the viewport height */
+  box-sizing: border-box; /* Include padding and border in the total width */
+  overflow: auto; /* Enable scrolling if content overflows */
+  margin: 1vh auto 0 -50vw; /* Set margin to 1% from top, center horizontally */
+  position: relative; /* Enable relative positioning */
+  left: 200%; /* Move the modal back 50% of its own width */
+  transform: translateX(-50%); /* Center the modal using transform */
+}
+
+/* ... (other styles) */
+
+.custom-modal .modal-body {
+  padding: 20px; /* Body padding */
+}
+
+/* ... (other styles) */
+
+.modal-title {
+  font-weight: bold; /* Header title font weight */
+}
+
+.modal-body {
+  padding: 20px; /* Body padding */
+}
+
+.modal-footer {
+  border-top: 1px solid #ddd; /* Footer border */
+  padding: 10px 20px; /* Footer padding */
+}
+
+/* Button styles */
+.btn-secondary {
+  background-color: #6c757d; /* Secondary button background color */
+  color: #fff; /* Secondary button text color */
+}
+
+.btn-primary {
+  background-color: #518ccb; /* Primary button background color */
+  color: #fff; /* Primary button text color */
+}
+
+/* Close button style */
+.close {
+  color: #000; /* Close button color */
+}
